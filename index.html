@@ -1,0 +1,64 @@
+<!-- Remember, Use "Save As" to make a copy of this file for you to change -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Guess the Number!</title>
+        
+        <style>
+        
+        </style>
+        
+        <script>
+            window.onload = function() {
+                // These hold references to the HTML elements
+                var guess   = document.getElementById('guess');
+                var submit  = document.getElementById('submit');
+                var hint    = document.getElementById('hint');
+                
+                // This holds the number that we're trying to guess
+                var theNumber;
+                
+                function startGame() {
+                    // Generate a new number for us to guess between 0 and 100
+                    theNumber = Math.floor(Math.random() * 100);
+                    
+                    // Clear the hint
+                    hint.innerHTML = '';
+                }
+                
+                function giveHint() {
+                    // Convert the entered value into an integer (a whole number)
+                    var guessNumber = parseInt(guess.value);
+                    
+                    // Test the guessed number against the secret number
+                    if (isNaN(guessNumber)) {
+                        hint.innerHTML = "Woah, that's not a number!";
+                    }                    
+                    else if (guessNumber > theNumber) {
+                        hint.innerHTML = "Too big, try smaller";
+                    }                    
+                    else if (guessNumber < theNumber) {
+                        hint.innerHTML = "Too small, try bigger";
+                    }                    
+                    else if (guessNumber == theNumber) {
+                        hint.innerHTML = "Well done!!! :-)";
+                    }
+                }
+                
+                // Give the player a hint when the submit button is clicked
+                submit.onclick = giveHint;
+                
+                startGame();
+            };
+        </script>        
+    </head>
+    <body>
+        <h1>Guess the number</h1>
+        
+        <p>Enter your guess: <input id="guess" /></p>
+        
+        <p id="hint"></p>
+        
+        <button id="submit">Submit your guess</button>
+    </body>
+</html>
